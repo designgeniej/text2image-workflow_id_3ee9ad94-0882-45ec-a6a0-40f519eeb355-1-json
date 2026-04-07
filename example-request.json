@@ -1,0 +1,240 @@
+{
+  "input": {
+    "workflow": {
+      "5": {
+        "inputs": {
+          "value": 832,
+          "width": [
+            "135",
+            0
+          ],
+          "height": [
+            "135",
+            1
+          ]
+        },
+        "class_type": "EmptyLatentImage",
+        "_meta": {
+          "title": "Batch size"
+        }
+      },
+      "6": {
+        "inputs": {
+          "text": "A sharp, eye-level close-up captures a female figure of Asian ethnicity, seated with an air of powerful, quiet confidence. She wears a breathtaking, architectural, one-piece short dress crafted from a high-gloss, patent leather in a profound, reflective black. The dress's silhouette is a daring A-line, with sculptural, voluminous sleeves that end sharply just above the elbow. The patent leather catches the deep, low light, creating dramatic, stark highlights and profound, inky shadows that define the garment's form. Her hair is a sleek, razor-sharp bob in a vibrant, glossy cherry red, contrasting with the black dress. The footwear consists of elegant, pointed-toe slingback heels in a matching glossy black. She sits poised on a classic, tufted, curved 1960s-style armchair, its upholstery a rich, velvety ruby red. Her hands are placed confidently on the armrests, one on the left and one on the right. The chair is placed close to the wall of a luxurious room, which is painted a deep, matte cardinal red. The floor is a pristine, high-contrast, black and white checkered pattern, its geometric lines creating a powerful graphic element that anchors the entire scene. The lighting is dramatic and high-contrast, with a single, sharp, low-key spotlight illuminating her and the chair from a single source, casting long, graphic shadows that bleed into darkness. This is a high-fashion editorial, a profound exploration of sharp lines, bold colors, and an era's aesthetic reimagined with a modern, edgy, and dark twist.",
+          "clip": [
+            "134",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "13",
+            0
+          ],
+          "vae": [
+            "10",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "9": {
+        "inputs": {
+          "filename_prefix": "DesignGenie",
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "10": {
+        "inputs": {
+          "filename": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "11": {
+        "inputs": {
+          "filename": "t5xxl_fp16.safetensors"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+          "title": "DualCLIPLoader"
+        }
+      },
+      "13": {
+        "inputs": {
+          "noise": [
+            "25",
+            0
+          ],
+          "guider": [
+            "22",
+            0
+          ],
+          "sampler": [
+            "16",
+            0
+          ],
+          "sigmas": [
+            "17",
+            0
+          ],
+          "latent_image": [
+            "5",
+            0
+          ]
+        },
+        "class_type": "SamplerCustomAdvanced",
+        "_meta": {
+          "title": "SamplerCustomAdvanced"
+        }
+      },
+      "16": {
+        "inputs": {
+          "text": "ddim"
+        },
+        "class_type": "KSamplerSelect",
+        "_meta": {
+          "title": "EULER-clean / ipndm detailed"
+        }
+      },
+      "17": {
+        "inputs": {
+          "text": "ddim_uniform",
+          "model": [
+            "61",
+            0
+          ]
+        },
+        "class_type": "BasicScheduler",
+        "_meta": {
+          "title": "BasicScheduler"
+        }
+      },
+      "22": {
+        "inputs": {
+          "model": [
+            "61",
+            0
+          ],
+          "conditioning": [
+            "60",
+            0
+          ]
+        },
+        "class_type": "BasicGuider",
+        "_meta": {
+          "title": "BasicGuider"
+        }
+      },
+      "25": {
+        "inputs": {
+          "value": 885196672849131
+        },
+        "class_type": "RandomNoise",
+        "_meta": {
+          "title": "RandomNoise"
+        }
+      },
+      "60": {
+        "inputs": {
+          "value": 2,
+          "conditioning": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+          "title": "Flux Guidance"
+        }
+      },
+      "61": {
+        "inputs": {
+          "value": 0.5,
+          "model": [
+            "116",
+            0
+          ],
+          "width": [
+            "135",
+            0
+          ],
+          "height": [
+            "135",
+            1
+          ]
+        },
+        "class_type": "ModelSamplingFlux",
+        "_meta": {
+          "title": "Flux Shift"
+        }
+      },
+      "116": {
+        "inputs": {
+          "value": null,
+          "model": [
+            "136",
+            0
+          ],
+          "clip": [
+            "11",
+            0
+          ]
+        },
+        "class_type": "Power Lora Loader (rgthree)",
+        "_meta": {
+          "title": "Power Lora Loader (rgthree)"
+        }
+      },
+      "134": {
+        "inputs": {
+          "value": -1,
+          "clip": [
+            "116",
+            1
+          ]
+        },
+        "class_type": "CLIPSetLastLayer",
+        "_meta": {
+          "title": "CLIPSetLastLayer"
+        }
+      },
+      "135": {
+        "inputs": {
+          "text": "square - 1024x1024 (1:1)"
+        },
+        "class_type": "SDXL Resolutions (JPS)",
+        "_meta": {
+          "title": "SDXL Resolutions (JPS)"
+        }
+      },
+      "136": {
+        "inputs": {
+          "filename": "flux1-dev.safetensors"
+        },
+        "class_type": "EnhancedLoadDiffusionModel",
+        "_meta": {
+          "title": "EnhancedLoadDiffusionModel"
+        }
+      }
+    }
+  }
+}
